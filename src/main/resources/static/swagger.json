@@ -1,0 +1,63 @@
+{
+  "swagger": "2.0",
+  "host": "localhost:8090/jx",
+  "basePath": "",
+  "tags": [],
+  "schemes": ["http"],
+  "paths": {
+    "/user/add": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "添加用户",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ]
+      }
+    },
+    "/user/get": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "添加用户",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "pwd": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "User"
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
