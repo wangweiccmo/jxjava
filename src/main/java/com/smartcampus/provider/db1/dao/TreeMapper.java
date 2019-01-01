@@ -1,23 +1,27 @@
 package com.smartcampus.provider.db1.dao;
 
-import com.smartcampus.provider.entity.UserEntity;
-import org.apache.ibatis.annotations.*;
-import org.apache.ibatis.mapping.StatementType;
+import com.smartcampus.provider.entity.TreeEntity;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
-public interface UserMapper {
-	@Select("SELECT * FROM jx_user WHERE NAME = #{name}  limit 1")
-	UserEntity selectByName(@Param("name") String name);
+import java.util.List;
 
-	@Select("SELECT * FROM jx_user WHERE NAME = #{name} and pwd = #{pwd}  limit 1")
-	UserEntity selectByNameAndPwd(@Param("name") String name,@Param("pwd") String pwd);
+public interface TreeMapper {
+	@Select("SELECT * FROM jx_tree")
+	List<TreeEntity> selectAll();
 
-	@Insert("INSERT INTO jx_user(name, pwd) VALUES(#{name}, #{pwd})")
-	int insert(@Param("name") String name, @Param("pwd") String pwd);
+	@Select("SELECT * FROM jx_tree WHERE id = #{id}  limit 1")
+	TreeEntity selectById(@Param("id") int id);
 
-	// 获取下一个自增序列
-	//select AUTO_INCREMENT FROM information_schema.TABLES WHERE  TABLE_NAME = 'jx_user';
+	@Select("SELECT * FROM jx_tree WHERE bindId = #{bindId}  limit 1")
+	TreeEntity selectByBindId(@Param("bindId") int bindId);
 
-	@Insert("INSERT INTO jx_user(name, pwd,role) VALUES(#{userEntity.name}, #{userEntity.pwd}, #{userEntity.role})")
-	@SelectKey(statement="SELECT LAST_INSERT_ID() as id", keyProperty="userEntity.id", before=false, resultType=int.class)
-	void   insertByEntity(@Param("userEntity") UserEntity userEntity);
+	@Insert("INSERT INTO jx_tree(bindId, name,info,map) VALUES(#{treeEntity.bindId}, #{treeEntity.name}, #{treeEntity.info}, #{treeEntity.map})")
+	void insert(@Param("treeEntity") TreeEntity treeEntity);
+
+	@Update("UPDATE jx_tree SET bindId =  #{treeEntity.bindId} , info = #{treeEntity.info}, name = #{treeEntity.name}, map = #{treeEntity.map} where " +
+			" id = #{treeEntity.id}")
+	void updateById(@Param("treeEntity") TreeEntity treeEntity);
 }

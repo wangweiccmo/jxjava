@@ -1,8 +1,10 @@
 package com.smartcampus.provider.db1.dao;
 
 import com.smartcampus.provider.entity.UserEntity;
-import org.apache.ibatis.annotations.*;
-import org.apache.ibatis.mapping.StatementType;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 
 public interface UserMapper {
 	@Select("SELECT * FROM jx_user WHERE NAME = #{name}  limit 1")
