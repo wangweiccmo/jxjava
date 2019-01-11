@@ -38,7 +38,7 @@ public class ExcelController {
     @Autowired
     private StudentService studentService;
 
-    @Value("${excel.dir}")
+    @Value("${excel.excel}")
     private String filePath;
 
     @ResponseBody
