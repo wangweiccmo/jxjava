@@ -1,8 +1,10 @@
 package com.smartcampus.provider.controller;
 
 import com.smartcampus.provider.constant.RepCode;
+import com.smartcampus.provider.db1.service.TreeDataService;
 import com.smartcampus.provider.db1.service.TreeService;
 import com.smartcampus.provider.entity.Rep;
+import com.smartcampus.provider.entity.TreeDataEntity;
 import com.smartcampus.provider.entity.TreeEntity;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ public class TreeController {
 
 	@Autowired
 	private TreeService treeService;
+	@Autowired
+	private TreeDataService treeDataService;
 
 	@ResponseBody
 	@RequestMapping("/add")
@@ -30,6 +34,15 @@ public class TreeController {
 		treeService.insert(treeEntity);
 		return new Rep(RepCode.OK);
 	}
+
+	@ResponseBody
+	@RequestMapping("/getTreeByBindId")
+	public Rep getTree() {
+		List<TreeDataEntity> tree = treeDataService.selectTree(3);
+		return new Rep(RepCode.OK,tree);
+	}
+
+
 	@ResponseBody
 	@RequestMapping("/updateById")
 	public Rep updateById(@RequestBody TreeEntity treeEntity) {

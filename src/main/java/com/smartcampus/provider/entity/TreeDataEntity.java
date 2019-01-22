@@ -13,6 +13,7 @@
 package com.smartcampus.provider.entity;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 
 /**
@@ -29,51 +30,82 @@ public class TreeDataEntity implements java.io.Serializable {
 
     private Integer id;
 
-    private String treeName;
+    private Integer bindId;
 
-    private String treeContext;
+    private String pmap;
 
-    private Timestamp createDate;
+    private Integer deep;
 
-    private Timestamp updateDate;
+    private String label;
+
+    private Integer pid;
+
+    private Integer hasCld;
+
+    private List<TreeDataEntity> children;
+
 
     public Integer getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getTreeName() {
-        return this.treeName;
+    public Integer getBindId() {
+        return bindId;
     }
 
-    public void setTreeName(String treeName) {
-        this.treeName = treeName;
+    public void setBindId(Integer bindId) {
+        this.bindId = bindId;
     }
 
-    public String getTreeContext() {
-        return this.treeContext;
+    public String getPmap() {
+        return pmap;
     }
 
-    public void setTreeContext(String treeContext) {
-        this.treeContext = treeContext;
+    public void setPmap(String pmap) {
+        this.pmap = pmap;
     }
 
-    public Timestamp getCreateDate() {
-        return this.createDate;
+    public Integer getDeep() {
+        return deep;
     }
 
-    public void setCreateDate(Timestamp createDate) {
-        this.createDate = createDate;
+    public void setDeep(Integer deep) {
+        this.deep = deep;
     }
 
-    public Timestamp getUpdateDate() {
-        return this.updateDate;
+    public String getLabel() {
+        return label;
     }
 
-    public void setUpdateDate(Timestamp updateDate) {
-        this.updateDate = updateDate;
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public Integer getPid() {
+        return pid;
+    }
+
+    public void setPid(Integer pid) {
+        this.pid = pid;
+    }
+
+    public Integer getHasCld() {
+        return hasCld;
+    }
+
+    public void setHasCld(Integer hasCld) {
+        this.hasCld = hasCld;
+    }
+
+    public List<TreeDataEntity> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<TreeDataEntity> children) {
+        this.children = children;
     }
 }

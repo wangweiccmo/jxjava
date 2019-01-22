@@ -15,13 +15,13 @@ public interface TreeMapper {
 	@Select("SELECT * FROM jx_tree WHERE id = #{id}  limit 1")
 	TreeEntity selectById(@Param("id") int id);
 
-	@Select("SELECT * FROM jx_tree WHERE bindId = #{bindId}  limit 1")
+	@Select("SELECT * FROM jx_tree WHERE bind_id = #{bindId}  limit 1")
 	TreeEntity selectByBindId(@Param("bindId") int bindId);
 
-	@Insert("INSERT INTO jx_tree(bindId, name,info,map) VALUES(#{treeEntity.bindId}, #{treeEntity.name}, #{treeEntity.info}, #{treeEntity.map})")
+	@Insert("INSERT INTO jx_tree(bind_id, name,info,map) VALUES(#{treeEntity.bindId}, #{treeEntity.name}, #{treeEntity.info}, #{treeEntity.map})")
 	void insert(@Param("treeEntity") TreeEntity treeEntity);
 
-	@Update("UPDATE jx_tree SET bindId =  #{treeEntity.bindId} , info = #{treeEntity.info}, name = #{treeEntity.name}, map = #{treeEntity.map} where " +
+	@Update("UPDATE jx_tree SET bind_id =  #{treeEntity.bindId} , info = #{treeEntity.info}, name = #{treeEntity.name}, map = #{treeEntity.map} where " +
 			" id = #{treeEntity.id}")
 	void updateById(@Param("treeEntity") TreeEntity treeEntity);
 }
