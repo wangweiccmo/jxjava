@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.SelectKey;
 import java.util.List;
 
 public interface TreeDataMapper {
-	@Select("SELECT * FROM jx_tree_data where bind_id=#{bindId} and deep = 1")
+	@Select("SELECT * FROM jx_tree_data where bind_id=#{bindId} and deep = 0")
 	List<TreeDataEntity> selectRoot(@Param("bindId") int bindId);
 
 	@Select("SELECT * FROM jx_tree_data where pid=#{pid}")
