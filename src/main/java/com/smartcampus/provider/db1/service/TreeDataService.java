@@ -44,6 +44,24 @@ public class TreeDataService {
         return rootNodes;
     }
 
+    public TreeDataEntity addNode(TreeDataEntity treeDataEntity) {
+        // 查询父节点
+        TreeDataEntity pNode = treeDataMapper.selectById(treeDataEntity.getPid());
+        if(pNode.getHasCld() != 1){
+            pNode.setHasCld(1);
+            // 更新父节点
+            treeDataMapper.upNode(pNode);
+        }
+        // 插入子节点，返回id
+        treeDataMapper.addNode(treeDataEntity);
+        return treeDataEntity;
+    }
 
+    public Integer upNode(TreeDataEntity treeDataEntity) {
+        return treeDataMapper.upNode(treeDataEntity);
+    }
 
+    public Integer delNode(TreeDataEntity treeDataEntity) {
+        return treeDataMapper.delNode(treeDataEntity);
+    }
 }

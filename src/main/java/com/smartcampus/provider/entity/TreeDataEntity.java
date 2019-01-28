@@ -25,7 +25,7 @@ import java.util.List;
 
 public class TreeDataEntity implements java.io.Serializable {
     /** 版本号 */
-    private static final long serialVersionUID = 1006068248639612268L;
+    private static final long serialVersionUID = 1116068248639612268L;
 
 
     private Integer id;

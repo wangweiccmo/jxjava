@@ -9,10 +9,7 @@ import com.smartcampus.provider.entity.TreeEntity;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -29,17 +26,40 @@ public class TreeController {
 	private TreeDataService treeDataService;
 
 	@ResponseBody
-	@RequestMapping("/add")
-	public Rep insert(@RequestBody TreeEntity treeEntity) {
-		treeService.insert(treeEntity);
+	@RequestMapping("/addNode")
+	public Rep addNode(@RequestBody TreeDataEntity treeDataEntity) {
+		TreeDataEntity resData = treeDataService.addNode(treeDataEntity);
+		return new Rep(RepCode.OK,resData);
+	}
+
+	@ResponseBody
+	@RequestMapping("/upNode")
+	public Rep upNode(@RequestBody TreeDataEntity treeDataEntity) {
+		treeDataService.addNode(treeDataEntity);
 		return new Rep(RepCode.OK);
 	}
 
 	@ResponseBody
-	@RequestMapping("/getTreeByBindId")
-	public Rep getTree() {
-		List<TreeDataEntity> tree = treeDataService.selectTree(3);
+	@RequestMapping("/delNode")
+	public Rep delNode(@RequestBody TreeDataEntity treeDataEntity) {
+		treeDataService.addNode(treeDataEntity);
+		return new Rep(RepCode.OK);
+	}
+
+
+
+	@ResponseBody
+	@RequestMapping("/bindId/{bindId}")
+	public Rep getTree(@PathVariable Integer bindId) {
+		List<TreeDataEntity> tree = treeDataService.selectTree(bindId);
 		return new Rep(RepCode.OK,tree);
+	}
+
+	@ResponseBody
+	@RequestMapping("/add")
+	public Rep insert(@RequestBody TreeEntity treeEntity) {
+		treeService.insert(treeEntity);
+		return new Rep(RepCode.OK);
 	}
 
 

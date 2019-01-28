@@ -2,10 +2,7 @@ package com.smartcampus.provider.db1.dao;
 
 import com.smartcampus.provider.entity.TreeDataEntity;
 import com.smartcampus.provider.entity.UserEntity;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectKey;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -19,5 +16,14 @@ public interface TreeDataMapper {
 	@Insert("INSERT INTO jx_tree_data(bind_id, pmap,deep,label,pid,has_cld) " +
 			"VALUES(#{tde.bindId}, #{tde.pmap}, #{tde.deep}, #{tde.label}, #{tde.pid}, #{tde.hasCld})")
 	@SelectKey(statement="SELECT LAST_INSERT_ID() as id", keyProperty="tde.id", before=false, resultType=int.class)
-	int addnode(@Param("tde") TreeDataEntity treeDataEntity);
+	int addNode(@Param("tde") TreeDataEntity treeDataEntity);
+
+	@Update("UPDATE jx_tree_data set label=#{tde.label} , has_cld=#{tde.hasCld}  where id=#{tde.id}" )
+	int upNode(@Param("tde") TreeDataEntity treeDataEntity);
+
+	@Delete("DELETE jx_tree_data id=#{tde.id}" )
+	int delNode(@Param("tde") TreeDataEntity treeDataEntity);
+
+	@Select("SELECT * FROM jx_tree_data where id=#{id}" )
+	TreeDataEntity selectById(@Param("id") int id );
 }
