@@ -4,10 +4,7 @@ import com.smartcampus.provider.constant.RepCode;
 import com.smartcampus.provider.db1.service.SchoolDepartmentsService;
 import com.smartcampus.provider.db1.service.TeacherService;
 import com.smartcampus.provider.db1.service.UserService;
-import com.smartcampus.provider.entity.Rep;
-import com.smartcampus.provider.entity.SchoolDepartmentsEntity;
-import com.smartcampus.provider.entity.TeacherEntity;
-import com.smartcampus.provider.entity.UserEntity;
+import com.smartcampus.provider.entity.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,6 +46,27 @@ public class TeacherController {
 		userEntity.setPwd(pwd);
 		userEntity.setRole("teacher");
 		int status1 = teacherService.insertBase(teacherEntity,userEntity );
+		return new Rep(RepCode.OK,status1);
+	}
+
+	@ResponseBody
+	@RequestMapping("/getListByPage")
+	public Rep getListByPage(@RequestBody Map<String,Object> reqMap) {
+		String page = reqMap.get("page").toString();
+		String pageSize = reqMap.get("pageSize").toString();
+		System.out.println("firstRowIndex: " + page + ":" + pageSize);
+		PageSearchEntity pageSearchEntity = new PageSearchEntity(page,pageSize);
+		List<TeacherEntity> st1 = teacherService.selectByPage(pageSearchEntity);
+		int st2 = teacherService.count();
+		pageSearchEntity.setTotal(st2);
+		return new Rep(RepCode.OK,st1,pageSearchEntity);
+	}
+
+	@ResponseBody
+	@RequestMapping("/delById")
+	public Rep delById(@RequestBody Map<String,Object> reqMap) {
+		Integer id = Integer.valueOf(reqMap.get("id").toString());
+		int status1 = teacherService.delById(id);
 		return new Rep(RepCode.OK,status1);
 	}
 }

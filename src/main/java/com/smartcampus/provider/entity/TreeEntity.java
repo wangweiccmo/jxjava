@@ -32,7 +32,6 @@ public class TreeEntity implements java.io.Serializable {
 
     private String info;
 
-    private String map;
 
     public Integer getId() {
         return id;
@@ -66,11 +65,5 @@ public class TreeEntity implements java.io.Serializable {
         this.info = info;
     }
 
-    public String getMap() {
-        return map;
-    }
 
-    public void setMap(String map) {
-        this.map = map;
-    }
 }

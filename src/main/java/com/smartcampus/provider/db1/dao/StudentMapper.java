@@ -2,7 +2,9 @@ package com.smartcampus.provider.db1.dao;
 
 import com.smartcampus.provider.entity.PageSearchEntity;
 import com.smartcampus.provider.entity.StudentEntity;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -21,4 +23,6 @@ public interface StudentMapper {
 	@Select("SELECT COUNT(*) FROM jx_student")
 	int count();
 
+	@Delete("DELETE from jx_student where id=#{id}" )
+	int delById(@Param("id") Integer id);
 }
