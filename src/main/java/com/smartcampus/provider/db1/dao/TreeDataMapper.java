@@ -21,8 +21,8 @@ public interface TreeDataMapper {
 	@Update("UPDATE jx_tree_data set label=#{tde.label} , has_cld=#{tde.hasCld}  where id=#{tde.id}" )
 	int upNode(@Param("tde") TreeDataEntity treeDataEntity);
 
-	@Delete("DELETE jx_tree_data id=#{tde.id}" )
-	int delNode(@Param("tde") TreeDataEntity treeDataEntity);
+	@Delete("DELETE from jx_tree_data where id=#{id}" )
+	int delNode(@Param("id") Integer id);
 
 	@Select("SELECT * FROM jx_tree_data where id=#{id}" )
 	TreeDataEntity selectById(@Param("id") int id );

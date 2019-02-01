@@ -47,7 +47,7 @@ public class TreeDataService {
     public TreeDataEntity addNode(TreeDataEntity treeDataEntity) {
         // 查询父节点
         TreeDataEntity pNode = treeDataMapper.selectById(treeDataEntity.getPid());
-        if(pNode.getHasCld() != 1){
+        if(pNode != null && pNode.getHasCld() != 1){
             pNode.setHasCld(1);
             // 更新父节点
             treeDataMapper.upNode(pNode);
@@ -61,7 +61,7 @@ public class TreeDataService {
         return treeDataMapper.upNode(treeDataEntity);
     }
 
-    public Integer delNode(TreeDataEntity treeDataEntity) {
-        return treeDataMapper.delNode(treeDataEntity);
+    public Integer delNode(Integer id) {
+        return treeDataMapper.delNode(id);
     }
 }

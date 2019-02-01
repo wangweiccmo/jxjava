@@ -40,9 +40,10 @@ public class TreeController {
 	}
 
 	@ResponseBody
-	@RequestMapping("/delNode")
-	public Rep delNode(@RequestBody TreeDataEntity treeDataEntity) {
-		treeDataService.addNode(treeDataEntity);
+	@RequestMapping("/delNode/{nodeId}")
+	public Rep delNode(@PathVariable Integer nodeId) {
+		System.out.println("nodeId:"+nodeId);
+		treeDataService.delNode(nodeId);
 		return new Rep(RepCode.OK);
 	}
 
