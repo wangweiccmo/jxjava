@@ -16,9 +16,6 @@ public interface UserMapper {
 	@Insert("INSERT INTO jx_user(name, pwd) VALUES(#{name}, #{pwd})")
 	int insert(@Param("name") String name, @Param("pwd") String pwd);
 
-	// 获取下一个自增序列
-	//select AUTO_INCREMENT FROM information_schema.TABLES WHERE  TABLE_NAME = 'jx_user';
-
 	@Insert("INSERT INTO jx_user(name, pwd,role) VALUES(#{userEntity.name}, #{userEntity.pwd}, #{userEntity.role})")
 	@SelectKey(statement="SELECT LAST_INSERT_ID() as id", keyProperty="userEntity.id", before=false, resultType=int.class)
 	void   insertByEntity(@Param("userEntity") UserEntity userEntity);

@@ -9,7 +9,6 @@ public class PageSearchEntity {
 	private Integer offSet = 0;
 	private Integer total = 0;
 
-
 	public PageSearchEntity(Integer page,Integer pageSize){
 		this.page = page;
 		this.pageSize = pageSize;
@@ -22,6 +21,9 @@ public class PageSearchEntity {
 			this.offSet = (this.page - 1) * this.pageSize;
 		}
 	}
+
+
+
 	public Integer getOffSet() {
 		return offSet;
 	}
