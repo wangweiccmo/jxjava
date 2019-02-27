@@ -3,10 +3,8 @@ package com.smartcampus.provider.db1.dao;
 import com.smartcampus.provider.entity.CourseEntity;
 import com.smartcampus.provider.entity.PageSearchEntity;
 import com.smartcampus.provider.entity.StudentEntity;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectKey;
+import com.smartcampus.provider.entity.TreeEntity;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -27,4 +25,14 @@ public interface CourseMapper {
 
 	@Select("SELECT * FROM jx_course limit #{offSet},#{pageSize}")
 	List<CourseEntity> selectByPage(PageSearchEntity pageSearchEntity);
+
+	@Delete("DELETE from jx_course where id=#{id}" )
+	int delById(@Param("id") Integer id);
+
+	@Update("UPDATE jx_course SET code = #{code} , name = #{name}, es_name = #{esName}," +
+			" type = #{type}, point = #{point}, time = #{time}, open_unit = #{openUnit}, teachers = #{teachers}, " +
+			" status = #{status}, cover_url = #{coverUrl}, books = #{books}, info = #{info}, exam_type = #{examType}, " +
+			" class_lv = #{classLv} " +
+			"where id = #{id}")
+	int updateById(CourseEntity courseEntity);
 }

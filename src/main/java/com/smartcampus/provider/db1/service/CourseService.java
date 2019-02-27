@@ -20,10 +20,22 @@ public class CourseService {
 		return courseMapper.insert(courseEntity);
 	}
 
+	@Transactional
+	public int updateById(CourseEntity courseEntity) {
+		return courseMapper.updateById(courseEntity);
+	}
+	
 	public CourseEntity selectById(Integer id) {
 		CourseEntity courseEntity = courseMapper.selectById(id);
 		return courseEntity;
 	}
+
+	public Integer delById(Integer id) {
+		int i = courseMapper.delById(id);
+		return i;
+	}
+
+
 
 	public CourseEntity selectByCode(String code) {
 		CourseEntity courseEntity = courseMapper.selectByCode(code);
@@ -39,5 +51,6 @@ public class CourseService {
 		List<CourseEntity>  courseEntitys = courseMapper.selectByPage(pageSearchEntity);
 		return courseEntitys;
 	}
+
 
 }
